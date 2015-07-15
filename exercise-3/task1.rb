@@ -1,9 +1,9 @@
 def sum_using_for numbers
     total = 0
 
-    numbers.each { |i|
+    for i in 0..numbers.length
         total += i
-    }
+    end
 
     total
 end
