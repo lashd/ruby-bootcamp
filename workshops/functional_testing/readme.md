@@ -26,7 +26,7 @@ For our first feature we might write something like this.
 Feature: Login
 User's must be logged in order to see their personal information.
 
-Scenario: Something that can happen
+Scenario: Logging in
   Given I got to the login page
   And I enter in the correct username
   And I enter in the correct password
@@ -44,6 +44,15 @@ Demonstration:
 1. Implement at steps to get a failing test
 2. Implement simplest application possible to pass the test.
 
+##Implement the next scenario
+```cucumber
+Scenario: Failed logins
+  Given I got to the login page
+  And I enter in the correct username
+  And I enter in the wrong password
+  When I click the login button
+  Then I should be on the Login Page
+```
 
 
 1. auto gen steps
