@@ -1,14 +1,8 @@
+require 'bundler'
+Bundler.require
+
 $LOAD_PATH.unshift("#{__dir__}/../lib")
-require 'haml'
+require 'support/views'
+require 'support/shared_contexts/haml_context'
+require 'support/shared_contexts/sinatra_application_context'
 
-shared_context :haml_templates do
-
-  def templates_dir
-    "#{__dir__}/../views/"
-  end
-
-  def render template, locals={}
-    result = Haml::Engine.new(File.read(template)).render(self,locals)
-    PageMagic::Session.new(Capybara::Node::Simple.new(result))
-  end
-end

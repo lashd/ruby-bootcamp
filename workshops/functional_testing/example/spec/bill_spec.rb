@@ -1,17 +1,14 @@
-require 'sinatra'
-require 'routes/bill'
-require 'rack/test'
+require 'app'
 
 describe Bill do
-  include Rack::Test::Methods
 
-  def app
-    described_class
-  end
+  include_context :sinatra_application
 
   describe 'get /' do
     it 'renders the bill' do
-      expect_any_instance_of(described_class).to receive(:haml).with(:bill).and_call_original
+
+      expect_any_instance_of(described_class).to receive(:statement_date).and_return(:todays_date)
+      expect_any_instance_of(described_class).to receive(:haml).with(:bill, locals: {statement_date: :todays_date})
 
       get('/')
     end

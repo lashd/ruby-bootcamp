@@ -1,8 +1,9 @@
 World(Module.new do
   def browser
-    $browser ||= PageMagic.session(browser: :firefox)
-
-    $browser.define_page_mappings '/login' => LoginPage, '/bill' => BillPage
-    $browser
+    $browser ||= begin
+      PageMagic.session(browser: :chrome).tap do |session|
+        session.define_page_mappings '/login' => LoginPage, '/bill' => BillPage
+      end
+    end
   end
 end)
